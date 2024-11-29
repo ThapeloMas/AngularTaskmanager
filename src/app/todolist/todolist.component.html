@@ -1,0 +1,44 @@
+<div class="container">
+
+    <h1>Task Manager Application</h1>
+
+    <hr>
+    <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+        <div class="form-group">
+            <label for="task">Task</label>
+            <input type="text" class="form-control" id="task" placeholder="Enter task" ngModel name="task" required>
+            <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-danger">Required
+                field</small>
+        </div>
+
+        <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of taskArray; index as i">
+                <td *ngIf="!t.isEditing">{{ t.taskName }}</td>
+                <td *ngIf="t.isEditing">
+                    <input type="text" [(ngModel)]="t.taskName" class="form-control">
+                </td>
+                <td><input (change)="onCheck(i)" id="myCheckbox" type="checkbox" [checked]="t.isCompleted"></td>
+                <td>
+                    <button class="btn btn-secondary btn-sm" (click)="onEdit(i)" *ngIf="!t.isEditing">Edit</button>
+                    <button class="btn btn-success btn-sm" (click)="onSave(i)" *ngIf="t.isEditing">Save</button>
+                    <button class="btn btn-warning btn-sm" (click)="onCancel(i)" *ngIf="t.isEditing">Cancel</button>
+                </td>
+                <td><button class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

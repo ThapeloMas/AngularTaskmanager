@@ -1,0 +1,26 @@
+<div class="brutalist-container">
+    <h1 class="smooth-type">Register</h1>
+    <form (ngSubmit)="onRegister()">
+        <div class="form-group">
+            <label for="email" class="brutalist-label">Email:</label>
+            <input id="email" type="email" class="brutalist-input" [(ngModel)]="email" name="email"
+                placeholder="Enter your email" required />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password" class="brutalist-label">Password:</label>
+            <input id="password" type="password" class="brutalist-input" [(ngModel)]="password" name="password"
+                placeholder="Enter your password" required />
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="confirmPassword" class="brutalist-label">Confirm Password:</label>
+            <input id="confirmPassword" type="password" class="brutalist-input" [(ngModel)]="confirmPassword"
+                name="confirmPassword" placeholder="Confirm your password" required />
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+<p>Already have an account? <a routerLink="/login">Login here</a></p>
+    
+</div>
