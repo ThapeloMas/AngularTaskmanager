@@ -1,27 +1,97 @@
-# Todo
+Task Manager Application with Authentication
+This project is a Task Manager Application built using Angular for the frontend, .NET Core for the backend, and MySQL for data storage. The application includes user authentication (registration and login) and allows users to manage their tasks (add, edit, mark as complete, and delete). Each user's tasks are securely stored in the database.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Features
+User Authentication
+Register: Create a new account with email and password.
+Login: Authenticate existing users.
+Session Management: Securely manages user sessions.
+Task Management
+Add Tasks: Input task descriptions into a to-do list.
+Edit Tasks: Modify tasks directly in the list.
+Mark as Completed: Mark tasks as complete/incomplete.
+Delete Tasks: Remove tasks from the list.
+Backend
+.NET Core: Handles API requests for user authentication and task management.
+MySQL: Stores user credentials and task data.
+Getting Started
+Prerequisites
+Node.js: For running the Angular frontend.
+Angular CLI: To develop and serve the Angular application.
+.NET SDK: For building and running the backend.
+MySQL Server: For storing user and task data.
+Installation
+Frontend
+Clone the repository:
+bash
+Copy code
+git clone https://github.com/your-repo/task-manager-app.git
+cd task-manager-app
+Install dependencies:
+bash
+Copy code
+npm install
+Start the Angular application:
+bash
+Copy code
+ng serve
+Backend
+Navigate to the backend folder:
+bash
+Copy code
+cd backend
+Build the project:
+bash
+Copy code
+dotnet build
+Run the application:
+bash
+Copy code
+dotnet run
+MySQL Database Setup
+Create a database:
+sql
+Copy code
+CREATE DATABASE TaskManager;
+Import the provided SQL schema:
+bash
+Copy code
+mysql -u root -p TaskManager < schema.sql
+Update the connection string in appsettings.json:
+json
+Copy code
+{
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=localhost;Database=TaskManager;User=root;Password=yourpassword;"
+    }
+}
+File Structure
+Frontend
+src/app/login: Login page components.
+src/app/register: Registration page components.
+src/app/todolist: Task manager components.
+Backend
+Controllers/UserController.cs: Manages user authentication API endpoints.
+Controllers/TaskController.cs: Manages task-related API endpoints.
+Models/User.cs: User data model.
+Models/Task.cs: Task data model.
+appsettings.json: Configuration file for database connection.
+Database
+schema.sql: Contains the SQL schema for users and tasks.
+API Endpoints
+User Authentication
+POST /api/user/register: Register a new user.
+POST /api/user/login: Authenticate a user.
+Task Management
+GET /api/tasks: Fetch tasks for the authenticated user.
+POST /api/tasks: Add a new task.
+PUT /api/tasks/{id}: Update an existing task.
+DELETE /api/tasks/{id}: Delete a task.
+Styling
+The application uses Brutalist CSS for the user interface, featuring bold borders, animated focus effects, and glitch-inspired styling.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Technologies Used
+Frontend: Angular, Bootstrap
+Backend: .NET Core
+Database: MySQL
+Authentication: JWT

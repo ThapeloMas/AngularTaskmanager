@@ -1,5 +1,7 @@
+// register.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,18 +12,31 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private authService: AuthService, 
+    private router: Router
+  ) {}
 
   onRegister() {
-    // Basic validation
+    // Check if passwords match
     if (this.password !== this.confirmPassword) {
-      alert('Passwords do not match!');
-    } else if (this.email && this.password) {
-      alert('Registration successful!');
-      this.router.navigate(['/todolist']);
-    } else {
-      alert('Please fill all fields');
+      this.errorMessage = 'Passwords do not match!';
+      return;
     }
+
+    this.authService.register(this.email, this.password)
+      .subscribe({
+        next: (response) => {
+          // Registration successful, navigate to login or directly log in
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          // Handle registration error
+          this.errorMessage = error.error?.message || 'Registration failed';
+          console.error('Registration error', error);
+        }
+      });
   }
 }

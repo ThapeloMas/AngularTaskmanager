@@ -1,11 +1,16 @@
+// app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './todolist/app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './todolist/login/login.component';
 import { RegisterComponent } from './todolist/register/register.component';
 import { TodolistComponent } from './todolist/todolist.component';
-import { AppComponent } from './app.component';
-  import { LoginComponent } from './todolist/login/login.component';
+
+import { AuthService } from './services/auth.service';
+import { TodoService } from './services/todo.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +21,14 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    TodoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
